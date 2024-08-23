@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Video de fondo -->
+    <video class="video-background" autoplay loop muted>
+        <source src="./bg-de-mrd.mp4" type="video/mp4">
+    </video>
+
+    <!-- Capa oscura sobre el video -->
+    <div class="overlay"></div>
+
+    <!-- Página 1: Cargar Datos -->
+    <div id="cargarDatos" class="page">
+        <h1>Cargar Datos</h1>
+        <div class="file-section">
+            <label for="csvParticipantes">Importar Participantes desde CSV:</label>
+            <input type="file" id="csvParticipantes" accept=".csv">
+            <button onclick="procesarCSV('participantes')">Cargar Participantes</button>
+        </div>
+        
+        <button onclick="cargarSorteo()">Ir al Sorteo</button>
+    </div>
+
+    <!-- Página 2: Sorteo -->
+    <div id="sorteo" class="row" style="display:none;">
+        <div class="column left-panel">
+            <h1>Sorteo</h1>
+            <div class="lists-container">
+                <div class="list-section">
+                    <h2>Participantes</h2>
+                    <div class="scrollable-list">
+                        <ul id="listaParticipantes">
+                            <!-- Lista de participantes -->
+                        </ul>
+                    </div>
+                </div>
+                <div class="list-section">
+                    <h2>Lista de Premios</h2>
+                    <div class="scrollable-list">
+                        <ul id="listaPremiosInicial">
+                            <!-- Lista de premios -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <button onclick="sortearGanador()">Sortear Ganador</button>
+            <button onclick="alAgua()">Al agua</button>
+
+        </div>
+        <div class="column right-panel">
+            <h1>Ganadores</h1>
+            <!-- Lista de ganadores -->
+            <div class="scrollable-list listaGanadores">
+                <ul id="listaGanadoresFinal">
+                    <!-- Lista de ganadores -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Página 3: Ganador -->
+    <div id="ganador" class="page" style="display:none;">
+        <h2 class="code-number" id="code"></h2>
+        <h1>¡Y el ganador es!</h1>
+        <div id="contador"></div>
+        <div id="nombreGanador"></div>
+        <div id="premioGanador"></div>
+        <button onclick="volverAlSorteo()" style="display:none;" id="volverButton">Volver</button>
+    </div>
+
+    <!-- Página 4: Al Agua -->
+    <div id="alAgua" class="page" style="display:none;">
+        <h2 class="code-number" id="codigoAlAgua"></h2>
+        <h1>¡Al Agua!</h1>
+        <div id="contadorAlAgua"></div>
+        <div id="nombreAlAgua"></div>
+        <button onclick="volverAlSorteoDesdeAlAgua()" style="display:none;" id="volverButtonAlAgua">Volver</button>
+    </div>
+
+    <!-- Pagina 5: Fin del Sorteo -->
+    <div id="finSorteo" class="page" style="display:none;">
+        <h1>¡Felicidades a los Ganadores!</h1>
+        <h2>Estos son los ganadores y sus premios:</h2>
+        <div class="scrollable-list ganadoresFinalesSorteo">
+            <ul id="listaGanadoresFinalSorteo">
+                <!-- Lista de ganadores -->
+            </ul>
+        </div>
+        <button onclick="reiniciarSorteo()">Reiniciar Sorteo</button>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</body>
+</html>
